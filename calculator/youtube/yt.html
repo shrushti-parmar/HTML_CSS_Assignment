@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Clone</title>
+    <style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #000;
+    color: #fff;
+    overflow-x: hidden;
+}
+
+.hd {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background: #000;
+    border-bottom: 1px solid #333;
+}
+
+.hl {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.btn img {
+    height: 20px;
+}
+
+.logo {
+    height: 20px;
+}
+
+.hc {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex: 0 1 650px;
+    justify-content: center;
+}
+
+.sbox {
+    display: flex;
+    width: 100%;
+    max-width: 550px;
+}
+
+.sbox input {
+    width: 100%;
+    padding: 8px 14px;
+    background: #000;
+    color: #fff;
+    border: 1px solid #444;
+    border-right: none;
+    border-radius: 20px 0 0 20px;
+    outline: none;
+    font-size: 15px;
+}
+
+.sbtn {
+    background: #333;
+    border: 1px solid #444;
+    border-radius: 0 20px 20px 0;
+    padding: 0 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.sbtn img {
+    height: 16px;
+}
+
+.mic {
+    background: #222;
+    border: none;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.mic img {
+    height: 16px;
+}
+
+.hr {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.user {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: block;
+}
+
+.app {
+    display: flex;
+    min-height: calc(100vh - 56px);
+}
+
+.side {
+    width: 240px;
+    flex-shrink: 0;
+    background: #000;
+    padding: 12px 0;
+}
+
+.nav {
+    display: flex;
+    flex-direction: column;
+}
+
+.link {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    padding: 10px 24px;
+    color: #fff;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.link img {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+}
+
+.link.on {
+    background: #333;
+    font-weight: 700;
+}
+
+.div {
+    border-top: 1px solid #333;
+    margin: 12px 0;
+}
+
+.sub-h {
+    font-size: 13px;
+    font-weight: 700;
+    color: #888;
+    padding: 8px 24px;
+    letter-spacing: 0.5px;
+}
+
+.chan {
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+}
+
+.ctxt {
+    flex: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.dot {
+    width: 6px;
+    height: 6px;
+    background: #1e90ff;
+    border-radius: 50%;
+    margin-left: auto;
+}
+
+.main {
+    flex: 1;
+    padding: 15px 24px;
+    background: #000;
+    overflow-x: hidden;
+}
+
+.chips {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    overflow-x: auto;
+    white-space: nowrap;
+    padding-bottom: 12px;
+    margin-bottom: 20px;
+}
+
+.tag {
+    background: #333;
+    color: #fff;
+    border: none;
+    padding: 7px 14px;
+    border-radius: 16px;
+    font-size: 13px;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.tag.on {
+    background: #fff;
+    color: #000;
+    font-weight: 700;
+}
+
+.tag.arr {
+    padding: 7px 12px;
+    font-weight: 700;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px 16px;
+}
+
+.cd {
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.th {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    border-radius: 10px;
+    display: block;
+}
+
+.info {
+    display: flex;
+    gap: 12px;
+    margin-top: 12px;
+}
+
+.ava {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.det {
+    display: flex;
+    flex-direction: column;
+}
+
+.det.noa {
+    padding-left: 4px;
+}
+
+.tit {
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.35;
+    color: #fff;
+}
+
+.by {
+    font-size: 12px;
+    color: #aaa;
+    margin-top: 6px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.vi {
+    width: 12px;
+    height: 12px;
+}
+
+.st {
+    font-size: 12px;
+    color: #aaa;
+    margin-top: 2px;
+}
+
+@media (max-width: 1200px) {
+    .grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 900px) {
+    .side {
+        width: 70px;
+    }
+
+    .side span,
+    .sub-h,
+    .dot {
+        display: none;
+    }
+
+    .link {
+        justify-content: center;
+        padding: 12px;
+    }
+
+    .grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .side {
+        display: none;
+    }
+
+    .hc {
+        display: none;
+    }
+
+    .grid {
+        grid-template-columns: 1fr;
+    }
+
+    .main {
+        padding: 10px;
+    }
+}
+</style>
+</head>
+
+<body>
+    <header class="hd">
+        <div class="hl">
+            <button class="btn" type="button"><img src="assets/hambarger.png" alt="Menu"></button>
+            <img src="assets/Youtube logo.png" alt="YouTube" class="logo">
+        </div>
+        <div class="hc">
+            <div class="sbox">
+                <input type="text" placeholder="Search">
+                <button class="sbtn" type="button"><img src="assets/search.png" alt="Search"></button>
+            </div>
+            <button class="mic" type="button"><img src="assets/mic.png" alt="Mic"></button>
+        </div>
+        <div class="hr">
+            <button class="btn" type="button"><img src="assets/create.png" alt="Create"></button>
+            <button class="btn" type="button"><img src="assets/bell.png" alt="Bell"></button>
+            <img src="assets/Ellipse 1.png" alt="User" class="user">
+        </div>
+    </header>
+    <div class="app">
+        <aside class="side">
+            <nav class="nav">
+                <a href="#" class="link on"><img src="assets/home.png" alt="Home"><span>Home</span></a>
+                <a href="#" class="link"><img src="assets/explore.png" alt="Explores"><span>Explores</span></a>
+                <a href="#" class="link"><img src="assets/shorts.png" alt="Shorts"><span>Shorts</span></a>
+                <a href="#" class="link"><img src="assets/subscription.png"
+                        alt="Subscriptions"><span>Subscriptions</span></a>
+            </nav>
+            <div class="div"></div>
+            <nav class="nav">
+                <a href="#" class="link"><img src="assets/library.png" alt="Library"><span>Library</span></a>
+                <a href="#" class="link"><img src="assets/history.png" alt="History"><span>History</span></a>
+                <a href="#" class="link"><img src="assets/your_video.png" alt="Your videos"><span>Your videos</span></a>
+                <a href="#" class="link"><img src="assets/watch_later.png" alt="Watch later"><span>Watch
+                        later</span></a>
+                <a href="#" class="link"><img src="assets/liked.png" alt="Liked videos"><span>Liked videos</span></a>
+                <a href="#" class="link"><img src="assets/down_arrow.png" alt="Show more"><span>Show more</span></a>
+            </nav>
+            <div class="div"></div>
+            <div class="sub-h">SUBSCRIPTIONS</div>
+            <nav class="nav">
+                <a href="#" class="link"><img src="assets/Ellipse 1 (1).png" alt="Nadir" class="chan"><span
+                        class="ctxt">Nadir On The Go</span><span class="dot"></span></a>
+                <a href="#" class="link"><img src="assets/Ellipse 1 (2).png" alt="Coke Studio" class="chan"><span
+                        class="ctxt">Coke Studio Bangla</span><span class="dot"></span></a>
+                <a href="#" class="link"><img src="assets/Ellipse 1 (3).png" alt="MKBHD" class="chan"><span
+                        class="ctxt">MKBHD</span></a>
+                <a href="#" class="link"><img src="assets/Ellipse 1 (4).png" alt="Figma" class="chan"><span
+                        class="ctxt">Figma</span><span class="dot"></span></a>
+                <a href="#" class="link"><img src="assets/Ellipse 1 (5).png" alt="ATC" class="chan"><span
+                        class="ctxt">ATC Android ToTo C...</span></a>
+                <a href="#" class="link"><img src="assets/Ellipse 1 (6).png" alt="Alux" class="chan"><span
+                        class="ctxt">Alux.com</span><span class="dot"></span></a>
+            </nav>
+        </aside>
+        <main class="main">
+            <div class="chips">
+                <button class="tag on">All</button>
+                <button class="tag">Cook Studio</button>
+                <button class="tag">UX</button>
+                <button class="tag">Case Study</button>
+                <button class="tag">Music</button>
+                <button class="tag">Bnagla Lofi</button>
+                <button class="tag">Tour</button>
+                <button class="tag">Saintmartin</button>
+                <button class="tag">Tech</button>
+                <button class="tag">iPhone 13</button>
+                <button class="tag">User Interface Design</button>
+                <button class="tag">Computer...</button>
+                <button class="tag arr">&gt;</button>
+            </div>
+            <div class="grid">
+                <div class="cd">
+                    <img src="assets/Thumbnail-8.png" alt="Thumb" class="th">
+                    <div class="info">
+                        <img src="assets/Ellipse 4 (1).png" alt="Avatar" class="ava">
+                        <div class="det">
+                            <div class="tit">Bulbuli | Coke Studio Bangla | Season One | Ritu Raj X Nandita</div>
+                            <div class="by">Coke Studio Bangla <img src="assets/verified.png" alt="v" class="vi"></div>
+                            <div class="st">1.5M views &bull; 2 days ago</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="cd">
+                    <img src="assets/Thumbnail-9.png" alt="Thumb" class="th">
+                    <div class="info">
+                        <img src="assets/Ellipse 4 (2).png" alt="Avatar" class="ava">
+                        <div class="det">
+                            <div class="tit">Infinix Note 12 : Helio G88 SoC! AMOLED</div>
+                            <div class="by">ATC Andriod ToTo Company <img src="assets/verified.png" alt="v" class="vi">
+                            </div>
+                            <div class="st">4.2M views &bull; 2 days ago</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="cd">
+                    <img src="assets/Thumbnail-10.png" alt="Thumb" class="th">
+                    <div class="info">
+                        <img src="assets/Ellipse 4 (3).png" alt="Avatar" class="ava">
+                        <div class="det">
+                            <div class="tit">My first UX Design case study - This got me my first job.</div>
+                            <div class="by">Saptarshi Prakash</div>
+                            <div class="st">4.8K views &bull; 1 years ago</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="cd">
+                    <img src="assets/Thumbnail-11.png" alt="Thumb" class="th">
+                    <div class="info">
+                        <div class="det noa">
+                            <div class="tit">My Mix</div>
+                            <div class="by">Lopamudra Mitra, Anupam Roy, and more</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="cd">
+                    <img src="assets/Thumbnail-4.png" alt="Thumb" class="th">
+                    <div class="info">
+                        <img src="assets/Ellipse 4 (4).png" alt="Avatar" class="ava">
+                        <div class="det">
+                            <div class="tit">UX Design - What is it? (From AJ &amp;Smart)</div>
+                            <div class="by">AJ&amp;Smar <img src="assets/verified.png" alt="v" class="vi"></div>
+                            <div class="st">150K views &bull; 3 years ago</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="cd">
+                    <img src="assets/Thumbnail-5.png" alt="Thumb" class="th">
+                    <div class="info">
+                        <div class="det noa">
+                            <div class="tit">Mix - Mombati | Mohon Sharif | Dhakaiya Dose | Mahib Ahsan ft Anika</div>
+                            <div class="by">Mohon Sharif, Odd Signature, Shayan Chowdhury Arnob, and more</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="cd">
+                    <img src="assets/Thumbnail-6.png" alt="Thumb" class="th">
+                    <div class="info">
+                        <img src="assets/Ellipse 4 (5).png" alt="Avatar" class="ava">
+                        <div class="det">
+                            <div class="tit">| 48 VISA-FREE</div>
+                            <div class="by">Nadir On The Go</div>
+                            <div class="st">1.7M views &bull; 1 years ago</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="cd">
+                    <img src="assets/Thumbnail-7.png" alt="Thumb" class="th">
+                    <div class="info">
+                        <img src="assets/Ellipse 4 (6).png" alt="Avatar" class="ava">
+                        <div class="det">
+                            <div class="tit">14 Advanced Tips to Design FASTER in Figma</div>
+                            <div class="by">Mizko <img src="assets/verified.png" alt="v" class="vi"></div>
+                            <div class="st">53K views &bull; 1 years ago</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="cd">
+                    <img src="assets/Thumbnail.png" alt="Thumb" class="th">
+                    <div class="info">
+                        <img src="assets/Ellipse 4-1.png" alt="Avatar" class="ava">
+                        <div class="det">
+                            <div class="tit">Exploring The Desert | Travel Vlog</div>
+                            <div class="by">Travel With Me</div>
+                            <div class="st">320K views &bull; 5 months ago</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="cd">
+                    <img src="assets/Thumbnail-1.png" alt="Thumb" class="th">
+                    <div class="info">
+                        <img src="assets/Ellipse 4 (3).png" alt="Avatar" class="ava">
+                        <div class="det">
+                            <div class="tit">Tech Skills You Need In 2024</div>
+                            <div class="by">Tech Lead <img src="assets/verified.png" alt="v" class="vi"></div>
+                            <div class="st">890K views &bull; 8 months ago</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="cd">
+                    <img src="assets/Thumbnail-2.png" alt="Thumb" class="th">
+                    <div class="info">
+                        <img src="assets/Ellipse 4 (1).png" alt="Avatar" class="ava">
+                        <div class="det">
+                            <div class="tit">Life At Google HQ | A Day In The Life</div>
+                            <div class="by">Google Students</div>
+                            <div class="st">2.1M views &bull; 1 year ago</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="cd">
+                    <img src="assets/Thumbnail-3.png" alt="Thumb" class="th">
+                    <div class="info">
+                        <img src="assets/Ellipse 4 (2).png" alt="Avatar" class="ava">
+                        <div class="det">
+                            <div class="tit">Microsoft vs Google | Engineer Interview</div>
+                            <div class="by">Tech Insights <img src="assets/verified.png" alt="v" class="vi"></div>
+                            <div class="st">510K views &bull; 2 weeks ago</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+
+</html>

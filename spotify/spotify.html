@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spotify Clone</title>
+    <style>
+        * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #000;
+    color: #fff;
+    padding-bottom: 110px;
+}
+
+.app {
+    display: flex;
+    min-height: calc(100vh - 110px);
+}
+
+.side {
+    width: 240px;
+    background: #000;
+    padding: 24px 20px;
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+}
+
+.logo {
+    height: 40px;
+    margin-bottom: 24px;
+    align-self: flex-start;
+}
+
+.nav,
+.acts {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.acts {
+    margin-top: 24px;
+}
+
+.lnk {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    color: #b3b3b3;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.lnk.on {
+    color: #fff;
+}
+
+.lnk img {
+    width: 22px;
+    height: 22px;
+    object-fit: contain;
+}
+
+.div {
+    border-top: 1px solid #333;
+    margin: 20px 0;
+}
+
+.plist {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    overflow-y: auto;
+    flex: 1;
+}
+
+.pitem {
+    color: #888;
+    text-decoration: none;
+    font-size: 13px;
+}
+
+.inst {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #b3b3b3;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 700;
+    margin-top: auto;
+    padding-top: 20px;
+}
+
+.inst img {
+    width: 18px;
+    height: 18px;
+}
+
+.main {
+    flex: 1;
+    background: #121212;
+    padding: 20px 30px;
+    overflow-x: hidden;
+}
+
+.top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.aimg {
+    height: 32px;
+    cursor: pointer;
+}
+
+.usr {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #000;
+    border: 1px solid #333;
+    border-radius: 20px;
+    padding: 4px 12px 4px 4px;
+    cursor: pointer;
+}
+
+.upic {
+    height: 28px;
+    width: 28px;
+    border-radius: 50%;
+}
+
+.unm {
+    font-size: 14px;
+    font-weight: 700;
+    color: #fff;
+}
+
+.caret {
+    height: 10px;
+}
+
+.sec {
+    margin-bottom: 35px;
+}
+
+.tit {
+    font-size: 28px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 20px;
+}
+
+.m-g {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+}
+
+.m-cd {
+    display: flex;
+    align-items: center;
+    background: #282828;
+    border-radius: 6px;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.m-img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.m-txt {
+    padding: 0 16px;
+    font-size: 14px;
+    font-weight: 700;
+    color: #fff;
+}
+
+.s-hd {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.s-hd .tit {
+    font-size: 22px;
+    margin-bottom: 0;
+}
+
+.see {
+    color: #b3b3b3;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.s-g {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 20px;
+}
+
+.s-cd {
+    background: #181818;
+    padding: 16px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.s-img {
+    width: 100%;
+    aspect-ratio: 1;
+    border-radius: 6px;
+    object-fit: cover;
+}
+
+.s-tit {
+    font-size: 14px;
+    font-weight: 700;
+    color: #fff;
+    margin-top: 12px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.s-sub {
+    font-size: 12px;
+    color: #b3b3b3;
+    margin-top: 4px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.foot {
+    position: fixed;
+    bottom: 24px;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    background: #181818;
+    border-top: 1px solid #282828;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    z-index: 100;
+}
+
+.f-l {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    width: 250px;
+}
+
+.f-art {
+    width: 52px;
+    height: 52px;
+    border-radius: 4px;
+}
+
+.f-det {
+    display: flex;
+    flex-direction: column;
+}
+
+.f-tit {
+    font-size: 13px;
+    font-weight: 700;
+    color: #fff;
+}
+
+.f-artst {
+    font-size: 11px;
+    color: #b3b3b3;
+    margin-top: 3px;
+}
+
+.f-hrt {
+    width: 16px;
+    cursor: pointer;
+}
+
+.f-c {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.f-ctrl {
+    max-width: 500px;
+    width: 100%;
+}
+
+.f-r {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 250px;
+}
+
+.f-opt {
+    max-width: 200px;
+    width: 100%;
+}
+
+.bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 24px;
+    background: #1db954;
+    color: #000;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 0 20px;
+    font-size: 12px;
+    font-weight: 700;
+    z-index: 101;
+}
+
+@media (max-width: 1200px) {
+    .m-g {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .s-g {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 800px) {
+    .side {
+        width: 70px;
+        padding: 16px 10px;
+    }
+
+    .logo {
+        height: 30px;
+        margin-bottom: 16px;
+    }
+
+    .lnk span,
+    .plist,
+    .inst span,
+    .div {
+        display: none;
+    }
+
+    .lnk,
+    .inst {
+        justify-content: center;
+    }
+
+    .s-g {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .f-r {
+        display: none;
+    }
+}
+
+@media (max-width: 500px) {
+    .side {
+        display: none;
+    }
+
+    .main {
+        padding: 15px;
+    }
+
+    .m-g {
+        grid-template-columns: 1fr;
+    }
+
+    .s-g {
+        grid-template-columns: 1fr;
+    }
+
+    .f-l {
+        width: auto;
+    }
+}
+    </style>
+</head>
+
+<body>
+    <div class="app">
+        <aside class="side">
+            <img src="assets/Spotify logo.png" alt="Spotify" class="logo">
+            <nav class="nav">
+                <a href="#" class="lnk on"><img src="assets/Home.png" alt="Home"><span>Home</span></a>
+                <a href="#" class="lnk"><img src="assets/Search.png" alt="Search"><span>Search</span></a>
+                <a href="#" class="lnk"><img src="assets/Your library.png" alt="Library"><span>Your Library</span></a>
+            </nav>
+            <div class="acts">
+                <a href="#" class="lnk"><img src="assets/Create.png" alt="Create"><span>Create Playlist</span></a>
+                <a href="#" class="lnk"><img src="assets/Group 2.png" alt="Liked"><span>Liked Songs</span></a>
+                <a href="#" class="lnk"><img src="assets/your episodes.png" alt="Episodes"><span>Your
+                        Episodes</span></a>
+            </div>
+            <div class="div"></div>
+            <div class="plist">
+                <a href="#" class="pitem">FAV</a>
+                <a href="#" class="pitem">Daily Mix 1</a>
+                <a href="#" class="pitem">Discover Weekly</a>
+                <a href="#" class="pitem">Malayalam</a>
+                <a href="#" class="pitem">Dance / Electronix Mix</a>
+                <a href="#" class="pitem">EDM / Popular</a>
+            </div>
+            <a href="#" class="inst"><img src="assets/grommet-icons_install-option.png" alt="Install"><span>Install
+                    App</span></a>
+        </aside>
+        <main class="main">
+            <header class="top">
+                <img src="assets/top arrow navigation.png" alt="Nav" class="aimg">
+                <div class="usr">
+                    <img src="assets/User.png" alt="User" class="upic">
+                    <span class="unm">Angel</span>
+                    <img src="assets/fi-ss-caret-down.png" alt="v" class="caret">
+                </div>
+            </header>
+            <section class="sec">
+                <h2 class="tit">Good morning</h2>
+                <div class="m-g">
+                    <div class="m-cd"><img src="assets/Liked.png" alt="Liked" class="m-img"><span class="m-txt">Liked
+                            Songs</span></div>
+                    <div class="m-cd"><img src="assets/image4.png" alt="Neffex" class="m-img"><span class="m-txt">Neffex
+                            Playlist</span></div>
+                    <div class="m-cd"><img src="assets/image3.png" alt="K/DA" class="m-img"><span class="m-txt">K/
+                            DA</span></div>
+                    <div class="m-cd"><img src="assets/image1.png" alt="Liked" class="m-img"><span class="m-txt">Liked
+                            Songs</span></div>
+                    <div class="m-cd"><img src="assets/image2.png" alt="Dance" class="m-img"><span class="m-txt">Dance /
+                            Electronic Mix</span></div>
+                </div>
+            </section>
+            <section class="sec">
+                <div class="s-hd">
+                    <h2 class="tit">Shows you might like</h2>
+                    <a href="#" class="see">SEE ALL</a>
+                </div>
+                <div class="s-g">
+                    <div class="s-cd"><img src="assets/image9.png" alt="Show" class="s-img">
+                        <h4 class="s-tit">Weekly Motivatio...</h4>
+                        <p class="s-sub">Ben Ina Scott</p>
+                    </div>
+                    <div class="s-cd"><img src="assets/image8.png" alt="Show" class="s-img">
+                        <h4 class="s-tit">MEDITATION SELF</h4>
+                        <p class="s-sub">Ibn Hussain Aleen</p>
+                    </div>
+                    <div class="s-cd"><img src="assets/image7.png" alt="Show" class="s-img">
+                        <h4 class="s-tit">Words beyond act...</h4>
+                        <p class="s-sub">Samuel Scott</p>
+                    </div>
+                    <div class="s-cd"><img src="assets/image6.png" alt="Show" class="s-img">
+                        <h4 class="s-tit">The Alexa Show</h4>
+                        <p class="s-sub">Adriana Tom</p>
+                    </div>
+                    <div class="s-cd"><img src="assets/image5.png" alt="Show" class="s-img">
+                        <h4 class="s-tit">The Stories of Ma...</h4>
+                        <p class="s-sub">Lexus</p>
+                    </div>
+                    <div class="s-cd"><img src="assets/image10.png" alt="Show" class="s-img">
+                        <h4 class="s-tit">Motivation Daily b...</h4>
+                        <p class="s-sub">Georgina Martha</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+    <footer class="foot">
+        <div class="f-l">
+            <img src="assets/image11.png" alt="Album" class="f-art">
+            <div class="f-det">
+                <span class="f-tit">Dreaming On</span>
+                <span class="f-artst">NEFFEX</span>
+            </div>
+            <img src="assets/heart.png" alt="Heart" class="f-hrt">
+        </div>
+        <div class="f-c">
+            <img src="assets/Music Player Options.png" alt="Controls" class="f-ctrl">
+        </div>
+        <div class="f-r">
+            <img src="assets/Right options.png" alt="Options" class="f-opt">
+        </div>
+    </footer>
+    <div class="bar">
+        <span>&#128266; Listening on ASUS-ROG-G531GT</span>
+    </div>
+</body>
+
+</html>
